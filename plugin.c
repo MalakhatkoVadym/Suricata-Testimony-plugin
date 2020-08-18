@@ -1,4 +1,4 @@
-#include "suricata-common.h"
+
 #include "suricata-plugin.h"
 
 #include "decode.h"
@@ -34,7 +34,7 @@ void SCPluginInit(void)
 
 const SCPlugin PluginSpec = {
     .name = "testimony-plugin",
-    .author = "Some Developer",
+    .author = "Vadym Malakhatko <v.malakhatko@sirinsoftware.com>",
     .license = "GPLv2",
     .Init = SCPluginInit,
 };

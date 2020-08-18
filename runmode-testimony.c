@@ -29,7 +29,6 @@
 #include "conf.h"
 #include "runmodes.h"
 
-#include "suricata-common.h"
 #include "tm-threads.h"
 #include "runmodes.h"
 #include "runmode-testimony.h"
