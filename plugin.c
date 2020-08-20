@@ -6,7 +6,7 @@
 #include "runmode-testimony.h"
 #include "util-device.h"
 
-static char *source_name = "testimony-plugin";
+#define source_name "testimony-plugin"
 
 void InitCapturePlugin(const char *args, int plugin_slot, int receive_slot, int decode_slot)
 {
@@ -33,7 +33,7 @@ void SCPluginInit(void)
 }
 
 const SCPlugin PluginSpec = {
-    .name = "testimony-plugin",
+    .name = source_name,
     .author = "Vadym Malakhatko <v.malakhatko@sirinsoftware.com>",
     .license = "GPLv2",
     .Init = SCPluginInit,
