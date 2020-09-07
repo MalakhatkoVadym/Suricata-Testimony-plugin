@@ -4,6 +4,10 @@ SRCS :=		plugin.c \
 		source-testimony.c \
 		runmode-testimony.c
 
+ifeq ($(PREFIX),)
+    PREFIX := /usr/local
+endif
+
 # This needs to point to the Suricata include directory.
 # CPPFLAGS +=	-I/home/vadim/Desktop/apple/suricata/src
 CPPFLAGS += -I/usr/include/nss3/
@@ -18,3 +22,7 @@ all:
 
 clean:
 	rm -f *.so *~
+
+install: source-testimony.so
+	install -d $(PREFIX)/lib/
+	install -m 644 source-testimony.so $(PREFIX)/lib/
