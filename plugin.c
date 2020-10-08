@@ -32,9 +32,15 @@ void SCPluginInit(void)
     SCPluginRegisterCapture(plugin);
 }
 
-const SCPlugin PluginSpec = {
+const SCPlugin PluginRegistration  = {
     .name = source_name,
     .author = "Vadym Malakhatko <v.malakhatko@sirinsoftware.com>",
     .license = "GPLv2",
     .Init = SCPluginInit,
 };
+
+const SCPlugin *SCPluginRegister()
+{
+    return &PluginRegistration;
+}
+    
