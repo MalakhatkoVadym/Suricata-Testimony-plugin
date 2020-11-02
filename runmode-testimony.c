@@ -83,7 +83,7 @@ static void *ParseTestimonyConfig(const char *socket)
     TestimonySocketConfig *tconf = SCMalloc(sizeof(*tconf));
     ConfNode *testimony_packet_node;
     ConfNode *sock_root;
-    const char *fanout_size;
+    long fanout_size;
 
     if (unlikely(tconf == NULL)) {
         return NULL;
@@ -101,7 +101,7 @@ static void *ParseTestimonyConfig(const char *socket)
         goto finalize;
     }
 
-    sock_root = ConfNodeLookupKeyValue(testimony_packet_node, "socket", socket);
+    sock_root = ConfGetChildWithDefault(testimony_packet_node, NULL, socket);
 
     if (sock_root == NULL) {
         SCLogInfo("unable to find testimony config for "
@@ -109,10 +109,9 @@ static void *ParseTestimonyConfig(const char *socket)
         goto finalize;
     }
 
-    if (ConfGetChildValue(sock_root, "fanout-size", &fanout_size) == 1) {
-        if (fanout_size != NULL) {
-            tconf->fanout_size = atoi(fanout_size);
-        }
+    if (ConfGetChildValueInt(sock_root, "fanout-size", &fanout_size) == 1) {
+        tconf->fanout_size = fanout_size;
+        SCLogInfo("Testimony fanout size is set to \"%ld\"", fanout_size); 
     }
 finalize:
     SC_ATOMIC_RESET(tconf->ref);

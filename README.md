@@ -17,7 +17,7 @@ Add to suricata.yaml configuration file:
 plugins:
   - /path/to/testimony/library/source-testimony.so
 testimony:
-  - socket: /tmp/testimony.sock
+  /tmp/testimony.sock:
     fanout-size: 4
 ```
 

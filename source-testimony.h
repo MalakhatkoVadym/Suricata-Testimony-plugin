@@ -29,7 +29,7 @@ typedef struct TestimonySocketConfig_
 {
     char socket[SOCKET_NAME_LENGTH];
     /* fanout size */
-    uint32_t fanout_size;
+    long fanout_size;
     /* each thread will connect to one fanout index */
     SC_ATOMIC_DECLARE(unsigned int, current_fanout_index);
 

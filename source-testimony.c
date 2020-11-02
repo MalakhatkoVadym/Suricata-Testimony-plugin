@@ -226,7 +226,7 @@ static TmEcode ReceiveTestimonyLoop(ThreadVars *tv, void *data, void *slot)
 static TmEcode ReceiveTestimonyThreadInit(ThreadVars *tv, const void *initdata, void **data)
 {
     int res;
-    uint32_t fanout_index;
+    long fanout_index;
 
     TestimonySocketConfig *tconfig = (TestimonySocketConfig *)initdata;
 
@@ -260,7 +260,7 @@ static TmEcode ReceiveTestimonyThreadInit(ThreadVars *tv, const void *initdata, 
         // get current fanout index (0 - fanout_size) and increment current index
         fanout_index = SC_ATOMIC_ADD(tconfig->current_fanout_index, 1);
         if (fanout_index >= tconfig->fanout_size) {
-            SCLogError(SC_ERR_PLUGIN, "fanout_index '%u is bigger than fanout size: %u", tconfig->fanout_size, fanout_index);
+            SCLogError(SC_ERR_PLUGIN, "fanout_index '%ld is bigger than fanout size: %ld", tconfig->fanout_size, fanout_index);
             tconfig->DerefFunc(tconfig);
             SCReturnInt(TM_ECODE_FAILED);
         }
